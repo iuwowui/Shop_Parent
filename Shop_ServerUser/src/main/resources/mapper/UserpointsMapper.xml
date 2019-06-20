@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qfedu.ljb.server.user.dao.UserpointsMapper">
+  <resultMap id="BaseResultMap" type="com.qfedu.ljb.entity.Userpoints">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="uid" jdbcType="INTEGER" property="uid" />
+    <result column="totalscore" jdbcType="INTEGER" property="totalscore" />
+    <result column="currscore" jdbcType="INTEGER" property="currscore" />
+  </resultMap>
+
+  <insert id="insert" parameterType="com.qfedu.ljb.entity.Userpoints" useGeneratedKeys="true" keyProperty="id">
+    insert into userpoints (uid, totalscore,
+      currscore)
+    values (#{uid,jdbcType=INTEGER}, #{totalscore,jdbcType=INTEGER},
+      #{currscore,jdbcType=INTEGER})
+  </insert>
+
+  <update id="update">
+    update userpoints set totalscore=totalscore+#{score},currscore=currscore+#{score} where uid=#{uid}
+  </update>
+
+</mapper>

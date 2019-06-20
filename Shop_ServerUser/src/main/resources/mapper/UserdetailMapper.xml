@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qfedu.ljb.server.user.dao.UserdetailMapper">
+  <resultMap id="BaseResultMap" type="com.qfedu.ljb.entity.Userdetail">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="uid" jdbcType="INTEGER" property="uid" />
+    <result column="nickname" jdbcType="VARCHAR" property="nickname" />
+    <result column="birthday" jdbcType="DATE" property="birthday" />
+    <result column="sex" jdbcType="INTEGER" property="sex" />
+    <result column="headurl" jdbcType="VARCHAR" property="headurl" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+  </resultMap>
+
+  <insert id="insert" parameterType="com.qfedu.ljb.entity.Userdetail" useGeneratedKeys="true" keyProperty="id">
+    insert into userdetail (uid, nickname,
+      birthday, sex, headurl, 
+      createtime)
+    values (#{uid,jdbcType=INTEGER}, #{nickname,jdbcType=VARCHAR},
+      #{birthday,jdbcType=DATE}, #{sex,jdbcType=INTEGER}, #{headurl,jdbcType=VARCHAR}, now())
+  </insert>
+
+  <insert id="insertInit">
+    insert into userdetail(uid,createtime) values (#{uid},now())
+  </insert>
+</mapper>
